@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>城镇综合能源系统故障智能诊断平台</title>
+    <link href="css/mystyle.css" rel="stylesheet" type="text/css" media="all" />
+    <script src="js/echarts.min.js" charset="utf-8"></script>
+    <script src="js/jquery-3.2.0.min.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <div class="wpbox">
+        <div class="bnt">
+            <div class="bnt_left">
+                <p class="active"><a href="monitor.html">实时监测</a></p>
+            </div>
+            <div class="bnt_tit">
+                <div class="bnt_tit1">城镇综合能源系统</div>
+                <div class="bnt_tit2">
+                    故障智能诊断平台
+                </div>
+               
+            </div>
+            <div class="bnt_right">
+                <p><a href="malfunction.html">故障信息</a></p>
+            </div>
+        </div>
+        <div class="top">
+            <div class="top_left">
+                <h2 class="tith">诊断选择</h2>
+                <div class="topleft_tent">
+                    <div class="fa">
+                        <p class="fatit">实时数据导入</p>
+                        <p>
+                            连接数据库<input type="radio" value="open" name="database">
+                            关闭数据库<input type="radio" value="close" name="database">
+                        </p>
+                    </div>
+                    <div class="fb">
+                        <p class="fbtit">特征提取算法</p>
+                        <p>
+                            AutoEncode<input type="radio" value="open" name="sex">
+                            DBN<input type="radio" value="close" name="sex">
+                        </p>
+                    </div>
+                    <div class="fc">
+                        <button type="submit">开始检测</button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="top_mid">
+                <h2 class="tith">风险级别</h2>
+                <!-- <div>
+                    <ul>
+                        <li class="hot1">1</li>
+                        <li class="hot2">2</li>
+                        <li class="hot3">3</li>
+                        <li class="hot4">4</li>
+                        <li class="hot5">5</li>
+                      </ul> -->
+                <div id="risklevel" style="width: 90%;height: 79%; margin-left: 5%;"></div>
+                <!-- </div> -->
+            </div>
+            <div class="top_mid2">
+                <h2 class="tith">故障严重度</h2>
+                <div id="faultseverity" style="width: 90%;height: 79%;margin-left: 5%;"></div>
+            </div>
+            <div class="top_right">
+                <div class="top_rightone">
+                    <h2 class="tith">系统各设备故障次数</h2>
+                    <div id="failure_frc" style="width: 95%;height: 80%;margin-left: 2.5%;"></div>
+                </div>
+                <div class="top_righttwo">
+                    <div class="top_right1">
+                        <h2>劣化可能性</h2>
+                        <div class="normalback">
+                            <p class="rwith"><span class="rwith_img" style="width:60%"></span></p>
+                            <p class="text"><span><i class="ricon1"></i>劣化:6</span><span><i
+                                        class="tricon1"></i>优化:4</span></p>
+                        </div>
+                    </div>
+                    <div class="top_right2">
+                        <h2>自动预警</h2>
+                        <button id="normalButton" class="normal">正常</button>
+                        <button id="alarmButton" class="alarm">异常</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <h1>各子设备实时监控</h1>
+            <div class="real_time">
+                <h2>变频水泵</h2>
+                <div class="device">
+                    <div id="container1" style="height:170px;width: 100%;"></div>
+                    <a class="detail" href="malfunction.html">故障详情</a>
+                    <a class="model" href="simulation.html">仿真模型</a>
+                </div>
+            </div>
+            <div class="real_time">
+                <h2>热泵系统</h2>
+                <div class="device">
+                    <div id="container2" style="height:170px;width: 100%;"></div>
+                    <a class="detail" href="malfunction.html">故障详情</a>
+                    <a class="model" href="https://ibaotu.com/ui/15-91805-0-0-0-1.html">仿真模型</a>
+                </div>
+            </div>
+            <div class="real_time">
+                <h2>燃气内燃机</h2>
+                <div class="device">
+                    <div id="container3" style="height:170px;width: 100%;"></div>
+                    <a class="detail" href="malfunction.html">故障详情</a>
+                    <a class="model" href="https://ibaotu.com/ui/15-91805-0-0-0-1.html">仿真模型</a>
+                </div>
+            </div>
+            <div class="real_time">
+                <h2>蓄水箱</h2>
+                <div class="device">
+                    <div id="container4" style="height:170px;width: 100%;"></div>
+                    <a class="detail" href="malfunction.html">故障详情</a>
+                    <a class="model" href="https://ibaotu.com/ui/15-91805-0-0-0-1.html">仿真模型</a>
+                </div>
+            </div>
+            <div class="real_time">
+                <h2>电锅炉</h2>
+                <div class="device">
+                    <div id="container5" style="height:170px;width: 100%;"></div>
+                    <a class="detail" href="malfunction.html">故障详情</a>
+                    <a class="model" href="https://ibaotu.com/ui/15-91805-0-0-0-1.html">仿真模型</a>
+                </div>
+            </div>
+            <div class="real_time">
+                <h2>离心式冷水机组</h2>
+                <div class="device">
+                    <div id="container6" style="height:170px;width: 100%;"></div>
+                    <a class="detail" href="malfunction.html">故障详情</a>
+                    <a class="model" href="https://ibaotu.com/ui/15-91805-0-0-0-1.html">仿真模型</a>
+                </div>
+            </div>
+            <div class="real_time">
+                <h2>烟气热水型溴化锂机组</h2>
+                <div class="device">
+                    <div id="container7" style="height:170px;width: 100%;"></div>
+                    <a class="detail" href="malfunction.html">故障详情</a>
+                    <a class="model" href="https://ibaotu.com/ui/15-91805-0-0-0-1.html">仿真模型</a>
+                </div>
+            </div>
+            <div class="real_time">
+                <h2>燃气热水锅炉</h2>
+                <div class="device">
+                    <div id="container8" style="height:170px;width: 100%;"></div>
+                    <a class="detail" href="malfunction.html">故障详情</a>
+                    <a class="model" href="https://ibaotu.com/ui/15-91805-0-0-0-1.html">仿真模型</a>
+                </div>
+            </div>
+            <div class="real_time">
+                <h2>变压器</h2>
+                <div class="device">
+                    <div id="container9" style="height:170px;width: 100%;"></div>
+                    <a class="detail" href="malfunction.html">故障详情</a>
+                    <a class="model" href="https://ibaotu.com/ui/15-91805-0-0-0-1.html">仿真模型</a>
+                </div>
+            </div>
+            <div class="real_time">
+                <h2>蓄水池</h2>
+                <div class="device">
+                    <div id="container10" style="height:170px;width: 100%;"></div>
+                    <a class="detail" href="malfunction.html">故障详情</a>
+                    <a class="model" href="https://ibaotu.com/ui/15-91805-0-0-0-1.html">仿真模型</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript"
+        src="https://registry.npmmirror.com/echarts/5.5.0/files/dist/echarts.min.js"></script>
+    <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById('risklevel'));
+        option = {
+            color: ['#7ecef4'],
+            backgroundColor: 'rgba(1,202,217,.2)',
+            grid: {
+                left: 16,
+                right: 50,
+                top: 23,
+                bottom: 30,
+                containLabel: true
+            },
+
+            xAxis: {
+                type: 'value',
+                axisLine: {
+                    lineStyle: {
+                        color: 'rgba(255,255,255,.2)'
+                    }
+                },
+                splitLine: {
+                    lineStyle: {
+                        color: 'rgba(255,255,255,0)'
+                    }
+                },
+                axisLabel: {
+                    color: "rgba(255,255,255,1)"
+                },
+                data: ['20', '40', '60', '80', '100'],
+                boundaryGap: [0, 0.01]
+            },
+            yAxis: {
+                type: 'category',
+                axisLine: {
+                    lineStyle: {
+                        color: 'rgba(255,255,255,.5)'
+                    }
+                },
+                splitLine: {
+                    lineStyle: {
+                        color: 'rgba(255,255,255,.1)'
+                    }
+                },
+                axisLabel: {
+                    color: "rgba(255,255,255,.5)"
+                },
+                data: ['高', '中', '低']
+            },
+            series: [
+                {
+                    name: '风险级别',
+                    type: 'bar',
+                    barWidth: 30,
+                    itemStyle: {
+                        normal: {
+                            color: new echarts.graphic.LinearGradient(
+                                1, 0, 0, 1,
+                                [
+                                    { offset: 0, color: 'rgba(230,253,139,.7)' },
+                                    { offset: 1, color: 'rgba(41,220,205,.7)' }
+                                ]
+                            )
+                        }
+                    },
+                    data: [20, 60, 10]
+                }
+            ]
+        };
+        myChart.setOption(option);
+    </script>
+
+
+    <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById('faultseverity'));
+        option = {
+            color: ['#4d72d9', '#76c4bf', '#e5ffc7'],
+            backgroundColor: 'rgba(1,202,217,.2)',
+            grid: {
+                left: 60,
+                right: 60,
+                top: 20,
+                bottom: 0,
+                containLabel: true
+            },
+            legend: {
+                left: 10,
+                top: 5,
+                textStyle: {
+                    fontSize: 10,
+                    color: 'rgba(255,255,255,.6)'
+                },
+                data: ['轻微', '中等', '严重']
+            },
+            calculable: true,
+            series: [
+
+                {
+                    name: '面积模式',
+                    type: 'pie',
+                    radius: [20, 70],
+                    center: ['50%', '55%'],
+                    roseType: 'area',
+                    data: [
+                        { value: 207650, name: '轻微' },
+                        { value: 145896, name: '中等' },
+                        { value: 138920, name: '严重' },
+
+                    ]
+                }
+            ]
+        };
+        myChart.setOption(option);
+    </script>
+<script type="text/javascript">
+    var myChart = echarts.init(document.getElementById('failure_frc'));
+    option = {
+        backgroundColor: 'rgba(1,202,217,.2)',
+        grid: {
+            left: 50,
+            right: 20,
+            top: 12,
+            bottom: 56
+        },
+        legend: {
+            top: 5,
+            textStyle: {
+                fontSize: 10,
+                color: 'rgba(255,255,255,.7)'
+            },
+            data: ['故障次数']
+        },
+        xAxis: [
+            {
+                type: 'category',
+                axisLine: {
+                    lineStyle: {
+                        color: 'rgba(255,255,255,.2)'
+                    }
+                },
+                splitLine: {
+                    lineStyle: {
+                        color: 'rgba(255,255,255,.1)'
+                    }
+                },
+                axisLabel: {
+                    color: "rgba(255,255,255,.7)",
+                    interval: 0,
+                    rotate: 45
+                },
+                data: ['变频水泵', '热泵系统', '燃气内燃机', '蓄水箱', '电锅炉', '离心式冷水机', '烟气热水型溴化锂机', '燃气热水锅炉', '变压器', '蓄水池'],
+                axisPointer: {
+                    type: 'shadow'
+                }
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                name: '',
+                min: 0,
+                max: 250,
+                interval: 50,
+                axisLine: {
+                    lineStyle: {
+                        color: 'rgba(255,255,255,.3)'
+                    }
+                },
+                splitLine: {
+                    lineStyle: {
+                        color: 'rgba(255,255,255,.01)'
+                    }
+                },
+                axisLabel: {
+                    formatter: '{value}'
+                }
+            }
+
+        ],
+        series: [
+            {
+                name: '故障次数',
+                type: 'bar',
+                itemStyle: {
+                    normal: {
+                        color: '#00a0e9'
+                    }
+                },
+                data: [2.0, 2.6, 2.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0]
+            }
+        ]
+    };
+    myChart.setOption(option);
+</script>
+
+    <script type="text/javascript">
+        var dom = document.getElementById('container1');
+        var myChart = echarts.init(dom, null, {
+            renderer: 'canvas',
+            useDirtyRect: false
+        });
+        var app = {};
+
+        var option;
+        function randomData() {
+            now = new Date(+now + oneHour); // Use oneHour instead of oneDay
+            value = Math.random() * 0.6;
+            return {
+                name: now.toString(),
+                value: [
+                    [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/') +
+                    ' ' +
+                    now.getHours() + // Display hours
+                    ':00', // Add ':00' for hours format
+                    Math.round(value * 100) / 100
+                ]
+            };
+        }
+        let data = [];
+        let now = new Date(2023, 5, 3);
+        let oneHour = 3600 * 1000; // Define one hour in milliseconds
+        for (var i = 0; i < 100; i++) { // Reduced to 100 data points
+            data.push(randomData());
+        }
+        option = {
+            grid: {
+                top: '15%',
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            tooltip: {
+                trigger: 'axis',
+                formatter: function (params) {
+                    params = params[0];
+                    var date = new Date(params.name);
+                    return (
+                        date.getDate() +
+                        '/' +
+                        (date.getMonth() + 1) +
+                        '/' +
+                        date.getFullYear() +
+                        ' ' +
+                        date.getHours() +
+                        ':00' +
+                        ' : ' +
+                        params.value[1]
+                    );
+                },
+                axisPointer: {
+                    animation: false
+                }
+            },
+            xAxis: {
+                type: 'time',
+                splitLine: {
+                    show: false
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: 'white'
+                    }
+                },
+                axisLabel: {
+                    interval: 10, // Adjusted interval for better readability
+                    rotate: 45,
+                    color: 'white',
+                    fontSize: 10
+                }
+            },
+            yAxis: {
+                type: 'value',
+                min: 0,
+                max: 1,
+                boundaryGap: [0, '100%'],
+                splitLine: {
+                    show: false
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: 'white'
+                    }
+                },
+                axisLabel: {
+                    interval: 0.2,
+                    color: 'white',
+                    fontSize: 10
+                }
+            },
+            series: [
+                {
+                    name: 'Fake Data',
+                    type: 'line',
+                    showSymbol: false,
+                    lineStyle: {
+                        color: 'pink', // Set line color to pink
+                        width: 2 // Decrease line width to 2
+                    },
+                    data: data
+                },
+                {
+                    name: 'Threshold',
+                    type: 'line',
+                    markLine: {
+                        silent: true,
+                        data: [
+                            {
+                                yAxis: 0.6,
+                                lineStyle: {
+                                    color: 'white', // 设置直线颜色为白色
+                                    width: 1, // 设置直线宽度为1
+                                    type: 'solid', // 设置直线类型为实线
+                                    symbol: 'none' // 去掉箭头
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        };
+        setInterval(function () {
+            for (var i = 0; i < 5; i++) {
+                data.shift();
+                data.push(randomData());
+            }
+            myChart.setOption({
+                series: [
+                    {
+                        data: data
+                    }
+                ]
+            });
+        }, 1000);
+
+        if (option && typeof option === 'object') {
+            myChart.setOption(option);
+        }
+        window.addEventListener('resize', myChart.resize);
+    </script>
+
+<script type="text/javascript">
+    var containerData = [
+        { id: 'container2', limit: 0.4, color: 'lightblue', startDate: new Date(2023, 5, 3) },
+        { id: 'container3', limit: 0.32, color: 'lightgreen', startDate: new Date(2023, 5, 3) },
+        { id: 'container4', limit: 0.76, color: 'lightpink', startDate: new Date(2023, 5, 3) },
+        { id: 'container5', limit: 0.5, color: 'lightcoral', startDate: new Date(2023, 5, 3) },
+        { id: 'container6', limit: 0.6, color: 'lightsalmon', startDate: new Date(2023, 5, 3) },
+        { id: 'container7', limit: 0.52, color: 'lightseagreen', startDate: new Date(2023, 5, 3) },
+        { id: 'container8', limit: 0.8, color: 'lightsteelblue', startDate: new Date(2023, 5, 3) }
+    ];
+
+    containerData.forEach(container => {
+        var dom = document.getElementById(container.id);
+        var myChart = echarts.init(dom, null, {
+            renderer: 'canvas',
+            useDirtyRect: false
+        });
+
+        var option;
+        function randomData() {
+            now = new Date(+now + oneHour);
+            value = Math.random() * container.limit;
+            return {
+                name: now.toString(),
+                value: [
+                    [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/') +
+                    ' ' +
+                    now.getHours() + // Display hours
+                    ':00', // Add ':00' for hours format
+                    Math.round(value * 100) / 100
+                ]
+            };
+        }
+
+        let data = [];
+        let now = new Date(container.startDate); // Use specified start date
+        now.setHours(now.getHours() - 24); // Subtract 24 hours for each index to set different starting dates
+        let oneHour = 3600 * 1000; // Define one hour in milliseconds
+        for (var i = 0; i < 100; i++) { // Reduced to 100 data points
+            data.push(randomData());
+        }
+
+        option = {
+            grid: {
+                top: '15%',
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            tooltip: {
+                trigger: 'axis',
+                formatter: function (params) {
+                    params = params[0];
+                    var date = new Date(params.name);
+                    return (
+                        date.getDate() +
+                        '/' +
+                        (date.getMonth() + 1) +
+                        '/' +
+                        date.getFullYear() +
+                        ' ' +
+                        date.getHours() +
+                        ':00' +
+                        ' : ' +
+                        params.value[1]
+                    );
+                },
+                axisPointer: {
+                    animation: false
+                }
+            },
+            xAxis: {
+                type: 'time',
+                splitLine: {
+                    show: false
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: 'white'
+                    }
+                },
+                axisLabel: {
+                    interval: 10, // Adjusted interval for better readability
+                    rotate: 45,
+                    color: 'white',
+                    fontSize: 10
+                }
+            },
+            yAxis: {
+                type: 'value',
+                min: 0,
+                max: 1,
+                boundaryGap: [0, '100%'],
+                splitLine: {
+                    show: false
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: 'white'
+                    }
+                },
+                axisLabel: {
+                    interval: 0.2,
+                    color: 'white',
+                    fontSize: 10
+                }
+            },
+            series: [
+                {
+                    name: 'Fake Data',
+                    type: 'line',
+                    showSymbol: false,
+                    lineStyle: {
+                        color: container.color, // Set line color dynamically
+                        width: 2 // Decrease line width to 2
+                    },
+                    data: data
+                },
+                {
+                    name: 'Threshold',
+                    type: 'line',
+                    markLine: {
+                        silent: true,
+                        data: [
+                            {
+                                yAxis: container.limit,
+                                lineStyle: {
+                                    color: 'white', // 设置直线颜色为白色
+                                    width: 1, // 设置直线宽度为1
+                                    type: 'solid', // 设置直线类型为实线
+                                    symbol: 'none' // 去掉箭头
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        };
+        setInterval(function () {
+            for (var i = 0; i < 5; i++) {
+                data.shift();
+                data.push(randomData());
+            }
+            myChart.setOption({
+                series: [
+                    {
+                        data: data
+                    }
+                ]
+            });
+        }, 1000);
+
+        if (option && typeof option === 'object') {
+            myChart.setOption(option);
+        }
+        window.addEventListener('resize', myChart.resize);
+    });
+</script>
+
+
+<script type="text/javascript">
+    var containerData = [
+        { id: 'container9', limit: 0.77, color: 'lightyellow', startDate: new Date(2023, 5, 3) },
+        { id: 'container10', limit: 0.48, color: 'lightcyan', startDate: new Date(2023, 5, 3) }
+    ];
+
+    containerData.forEach(container => {
+        var dom = document.getElementById(container.id);
+        var myChart = echarts.init(dom, null, {
+            renderer: 'canvas',
+            useDirtyRect: false
+        });
+
+        var option;
+        function randomData() {
+            now = new Date(+now + oneHour);
+            value = Math.random() * container.limit;
+            return {
+                name: now.toString(),
+                value: [
+                    [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/') +
+                    ' ' +
+                    now.getHours() + // Display hours
+                    ':00', // Add ':00' for hours format
+                    Math.round(value * 100) / 100
+                ]
+            };
+        }
+
+        let data = [];
+        let now = new Date(container.startDate); // Use specified start date
+        now.setHours(now.getHours() - 24); // Subtract 24 hours for each index to set different starting dates
+        let oneHour = 3600 * 1000; // Define one hour in milliseconds
+        for (var i = 0; i < 100; i++) { // Reduced to 100 data points
+            data.push(randomData());
+        }
+
+        option = {
+            grid: {
+                top: '15%',
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            tooltip: {
+                trigger: 'axis',
+                formatter: function (params) {
+                    params = params[0];
+                    var date = new Date(params.name);
+                    return (
+                        date.getDate() +
+                        '/' +
+                        (date.getMonth() + 1) +
+                        '/' +
+                        date.getFullYear() +
+                        ' ' +
+                        date.getHours() +
+                        ':00' +
+                        ' : ' +
+                        params.value[1]
+                    );
+                },
+                axisPointer: {
+                    animation: false
+                }
+            },
+            xAxis: {
+                type: 'time',
+                splitLine: {
+                    show: false
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: 'white'
+                    }
+                },
+                axisLabel: {
+                    interval: 10, // Adjusted interval for better readability
+                    rotate: 45,
+                    color: 'white',
+                    fontSize: 10
+                }
+            },
+            yAxis: {
+                type: 'value',
+                min: 0,
+                max: 1,
+                boundaryGap: [0, '100%'],
+                splitLine: {
+                    show: false
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: 'white'
+                    }
+                },
+                axisLabel: {
+                    interval: 0.2,
+                    color: 'white',
+                    fontSize: 10
+                }
+            },
+            series: [
+                {
+                    name: 'Fake Data',
+                    type: 'line',
+                    showSymbol: false,
+                    lineStyle: {
+                        color: container.color, // Set line color dynamically
+                        width: 2 // Decrease line width to 2
+                    },
+                    data: data
+                },
+                {
+                    name: 'Threshold',
+                    type: 'line',
+                    markLine: {
+                        silent: true,
+                        data: [
+                            {
+                                yAxis: container.limit,
+                                lineStyle: {
+                                    color: 'white', // 设置直线颜色为白色
+                                    width: 1, // 设置直线宽度为1
+                                    type: 'solid', // 设置直线类型为实线
+                                    symbol: 'none' // 去掉箭头
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        };
+        setInterval(function () {
+            for (var i = 0; i < 5; i++) {
+                data.shift();
+                data.push(randomData());
+            }
+            myChart.setOption({
+                series: [
+                    {
+                        data: data
+                    }
+                ]
+            });
+        }, 1000);
+
+        if (option && typeof option === 'object') {
+            myChart.setOption(option);
+        }
+        window.addEventListener('resize', myChart.resize);
+    });
+</script>
+
+</body>
+
+</html>

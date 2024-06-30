@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>城镇综合能源系统故障智能诊断平台</title>
+  <link href="css/mystyle.css" rel="stylesheet" type="text/css" media="all" />
+  <script src="js/echarts.min.js" charset="utf-8"></script>
+  <script src="js/jquery-3.2.0.min.js" charset="utf-8"></script>
+</head>
+
+<body>
+  <div class="wpbox wpbox2">
+    <div class="bnt">
+      <div class="bnt_left">
+        <p><a href="monitor.html">实时监测</a></p>
+      </div>
+      <div class="bnt_tit">
+        <!-- <div class="bnt_tit1">城镇综合能源系统</div>
+        <div class="bnt_tit2">
+            故障智能诊断平台
+        </div> -->
+        <div class="bnt_all">供热管网 安全评估系统</div>
+    </div>
+      <div class="bnt_right">
+        <p class="active"><a href="malfunction.html">故障信息</a></p>
+      </div>
+    </div>
+    <div class="message">
+      <div class="allleft">
+        <div class="lefton">
+          <div class="leftll">
+            <div class="plefttoday">
+              <h2 class="tith2">故障处理数据统计</h2>
+              <div class="lefttoday_number">
+                <div class="wbox">
+                  <p>已处理</p>
+                  <h3 class="ceeb1fd">42</h3>
+                  <h4 class="text-muted">占比<img src="img/iconup.png" height="16" />2%</h4>
+                </div>
+                <div class="wbox">
+                  <p>未处理</p>
+                  <h3 class="c24c9ff">11</h3>
+                  <h4 class="text-muted">占比<img src="img/icondown.png" height="16" />1%</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="leftonl">
+            <div class="lefton_d">
+              <div class="dePro">
+                <h2>劣化可能性</h2>
+                <div class="m_back">
+                  <p class="rwith2"><span class="rwith_img2" style="width:40%"></span></p>
+                  <p class="text"><span><i class="ricon2"></i>劣化:4</span><span><i class="tricon2"></i>优化:6</span></p>
+                </div>
+              </div>
+              <div class="nfTime">
+                <h2>正常/故障时间比</h2>
+                <div class="m_back">
+                  <p class="rwith3"><span class="rwith_img3" style="width:90%"></span></p>
+                  <p class="text"><span><i class="ricon3"></i>正常:9</span><span><i class="tricon3"></i>故障:1</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="leftmid">
+          <h2>设备故障树</h2>
+          <div class="imgtree">
+            <img src="img/bpsb1.png" alt="设备故障树" id="treeImage" style="width: 100%; cursor: pointer;height: 100%;">
+            <span id="closeIcon"
+              style="position: absolute; top: 10px; right: 10px; font-size: 24px; color: white; cursor: pointer;">×</span>
+          </div>
+        </div>
+        <div class="leftdown">
+          <div class="evidence">
+            <h2>追加证据</h2>
+            <div style="background: rgba(1, 202, 217, .2); width: 90.5%;margin-left: 5%; height: 75%;">
+              <div class="allsele">
+                <div class="select_wrap" id="selectWrap">
+                  <select id="selectElem">
+                    <option value="1">电源电压不稳定</option>
+                    <option value="2">参数设置错误</option>
+                    <option value="3">水压传感器故障</option>
+                    <option value="4">变频器故障</option>
+                    <option value="5">电机轴承故障</option>
+                    <option value="6">温度传感器损坏</option>
+                  </select>
+                </div>
+                <div class="select_wrap2" id="selectWrap2">
+                  <select id="selectElem">
+                    <option value="1">正常</option>
+                    <option value="2">故障</option>
+                  </select>
+                </div>
+              </div>
+              <button id="updateButton" class="update-button">点击更新</button>
+            </div>
+          </div>
+          <div class="history">
+            <h2> 历史故障记录</h2>
+            <div class="record">
+              <ul>
+                <li>
+                  电机故障<span class="retime">2024/3/7  07：53</span>
+                </li>
+                <li class="bg">电机短路<span class="retime">2024/1/4 14：37</span></li>
+                <li>控制面板故障<span class="retime">2024/1/2 19：01</span></li>
+                <li class="bg">面板按键故障<span class="retime">2023/12/22 11：46</span></li>
+                <li>轴承润滑不良<span class="retime">2023/12/4 13：38</span></li>
+                <li class="bg">通讯故障<span class="retime">2023/12/4 09：07</span></li>
+                <li>电源过载<span class="retime">2023/11/18 16：52</span></li>
+                <li class="bg">密封老化<span class="retime">2023/11/6 23：27</span></li>
+                <li>输入信号故障<span class="retime">2023/11/1 00：42</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="allright">
+        <div class="righton">
+          <h2>原因</h2>
+          <div class="reason">
+            <ul>
+              <li class="bg"><span class="reason1">故障模式</span><span class="reason2">故障可能性</span><span
+                  class="reason3">解决策略</span></li>
+              <li><span class="reason1">电源线路故障</span><span class="reason2">60%</span><span
+                  class="reason3">1.检查电源线路是否松动或损坏。<br>
+                  2.使用万用表检查电源线路的通断性。<br>
+                  3.更换损坏的电源线路。</span></li>
+              <li class="bg"><span class="reason1">电源过载</span><span class="reason2">71%</span><span
+                  class="reason3">1.检查蓄水箱是否超载。<br>
+                  2.减少蓄水箱的负载。<br>
+                  3.更换容量更大的电源。</span></li>
+              <li><span class="reason1">电源电压不稳定</span><span class="reason2">55%</span><span
+                  class="reason3">1.检查电源电压是否在可接受的范围内。<br>
+                  2.使用稳压器稳定电源电压。<br>
+                  3.更换受损坏的电源组件。</span></li>
+              <li class="bg"><span class="reason1">变频器内部故障</span><span class="reason2">62%</span><span
+                  class="reason3">1.检查变频器内部连接是否松动或损坏。<br>
+                  2.使用万用表检查变频器的内部组件。<br>
+                  3.更换损坏的变频器内部组件。</span></li>
+              <li><span class="reason1">控制电路故障</span><span class="reason2">58%</span><span
+                  class="reason3">1.检查控制电路连接是否松动或损坏。<br>
+                  2.使用万用表检查控制电路的电压和电流。<br>
+                  3.更换损坏的控制电路组件。</span></li>
+              <li class="bg"><span class="reason1">通讯故障</span><span class="reason2">94%</span><span
+                  class="reason3">1.检查通讯线缆是否松动或损坏。<br>
+                  2.使用通讯测试仪检查通讯信号。<br>
+                  3.更换损坏的通讯组件。</span></li>
+              <li><span class="reason1">电机短路</span><span class="reason2">57%</span><span
+                  class="reason3">1.检查电机连接是否松动或损坏。<br>
+                  2.使用万用表检查电机的绝缘。<br>
+                  3.更换损坏的电机。</span></li>
+              <li class="bg"><span class="reason1">电机过热</span><span class="reason2">63%</span><span
+                  class="reason3">1.检查电机通风是否良好。<br>
+                  2.清除电机上的灰尘和碎屑。<br>
+                  3.更换损坏的电机风扇。</span></li>
+              <li><span class="reason1">电机轴承故障</span><span class="reason2">57%</span><span
+                  class="reason3">1.检查轴承是否磨损或损坏。<br>
+                  2.润滑或更换磨损的轴承。<br>
+                  3.调整松动的轴承。</span></li>
+              <li class="bg"><span class="reason1">轴承磨损</span><span class="reason2">62%</span><span
+                  class="reason3">1.检查轴承是否磨损。<br>
+                  2.润滑或更换磨损的轴承。<br>
+                  3.调整松动的轴承。</span></li>
+              <li><span class="reason1">轴承润滑不良</span><span class="reason2">75%</span><span
+                  class="reason3">1.检查轴承是否得到适当的润滑。<br>
+                  2.润滑轴承。<br>
+                  3.更换损坏的润滑脂。</span></li>
+              <li class="bg"><span class="reason1">异物堵塞</span><span class="reason2">62%</span><span
+                  class="reason3">1.检查是否有异物堵塞。<br>
+                  2.清除堵塞物。<br>
+                  3.更换损坏的部件。</span></li>
+              <li><span class="reason1">水质问题导致叶轮堵塞</span><span class="reason2">72%</span><span
+                  class="reason3">1.检查水质是否符合要求。<br>
+                  2.采取措施改善水质。<br>
+                  3.清除叶轮上的堵塞物。</span></li>
+              <li class="bg"><span class="reason1">密封老化</span><span class="reason2">86%</span><span
+                  class="reason3">1.检查密封是否老化。<br>
+                  2.更换老化的密封。<br>
+                  3.调整松动的密封。</span></li>
+              <li><span class="reason1">传感器损坏</span><span class="reason2">75%</span><span
+                  class="reason3">1.检查传感器是否损坏。<br>
+                  2.更换损坏的传感器。<br>
+                  3.调整松动的传感器。</span></li>
+              <li class="bg"><span class="reason1">传感器连接故障</span><span class="reason2">59%</span><span
+                  class="reason3">1.检查传感器连接是否松动或损坏。<br>
+                  2.重新连接传感器。<br>
+                  3.更换损坏的连接器。</span></li>
+              <li><span class="reason1">面板按键故障</span><span class="reason2">66%</span><span
+                  class="reason3">1.检查面板按键是否损坏。<br>
+                  2.更换损坏的面板按键。<br>
+                  3.调整松动的面板按键。</span></li>
+              <li class="bg"><span class="reason1">显示屏故障</span><span class="reason2">70%</span><span
+                  class="reason3">1.检查显示屏是否损坏。<br>
+                  2.更换损坏的显示屏。<br>
+                  3.调整松动的显示屏。</span></li>
+              <li><span class="reason1">参数设定错误</span><span class="reason2">82%</span><span
+                  class="reason3">1.检查参数设置是否正确。<br>
+                  2.按照制造商的说明重新设置参数。<br>
+                  3.更换损坏的参数存储器。</span></li>
+              <li class="bg"><span class="reason1">参数储存错误</span><span class="reason2">55%</span><span
+                  class="reason3">1.检查参数储存器是否损坏。<br>
+                  2.更换损坏的参数储存器。<br>
+                  3.重新存储参数。</span></li>
+              <li><span class="reason1">输入信号故障</span><span class="reason2">56%</span><span
+                  class="reason3">1.检查输入信号连接是否松动或损坏。<br>
+                  2.重新连接输入信号。<br>
+                  3.更换损坏的输入信号组件。</span></li>
+              <li class="bg"><span class="reason1">输出信号故障</span><span class="reason2">57%</span><span
+                  class="reason3">1.检查输出信号连接是否松动或损坏。<br>
+                  2.重新连接输出信号。<br>
+                  3.更换损坏的输出信号组件。</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="rightdown">
+          <h2>恶化</h2>
+          <div class="deter">
+            <ul>
+              <li class="bg"><span class="reason1">故障模式</span><span class="reason2">故障可能性</span><span
+                  class="reason3">解决策略</span></li>
+              <li><span class="reason1">电气系统故障</span><span class="reason2">56%</span><span
+                  class="reason3">1.检查线路和连接器是否存在松动或损坏。<br>
+                  2.使用万用表检查线路的通断性。<br>
+                  3.更换损坏的组件。</span></li>
+              <li class="bg"><span class="reason1">机械部件故障</span><span class="reason2">56%</span><span
+                  class="reason3">1.检查机械部件是否磨损或损坏。<br>
+                  2.润滑或更换磨损的部件。<br>
+                  3.调整松动的部件。</span></li>
+              <li><span class="reason1">传感器故障</span><span class="reason2">56%</span><span
+                  class="reason3">1.检查传感器连接是否松动或损坏。<br>
+                  2.使用万用表检查传感器的输出信号。<br>
+                  3.更换损坏的传感器。</span></li>
+              <li class="bg"><span class="reason1">控制系统故障</span><span class="reason2">56%</span><span
+                  class="reason3">1.检查控制系统的程序是否存在错误。<br>
+                  2.更新或重新编程控制系统。<br>
+                  3.更换损坏的控制组件。</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    var treeImage = document.getElementById('treeImage');
+    var closeIcon = document.getElementById('closeIcon');
+
+    treeImage.addEventListener('dblclick', function () {
+      // 双击放大显示
+      treeImage.style.width = '100%'; // 或者其他你希望的放大比例
+      closeIcon.style.display = 'block'; // 显示关闭符号
+    });
+
+    closeIcon.addEventListener('click', function () {
+      // 点击关闭符号还原大小
+      treeImage.style.width = '100%'; // 还原到原始大小
+      closeIcon.style.display = 'none'; // 隐藏关闭符号
+    });
+  </script>
+</body>
+
+</html>
